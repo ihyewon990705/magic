@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吃饭大王</title>
+    <style>
+        li {
+            color: rgb(90, 90, 100);
+            font-family: '楷体';
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center; border: 2px solid rgb(172, 236, 238);
+        background-color: rgb(158, 225, 241); width: 220px;height: 80px;
+        position: relative;margin: 30px  auto;">
+        <p style="line-height: 40px;font-family: '楷体'; font-weight: 700;font-size: 30px">
+            开始吃饭！
+        </p>
+    </div>
+    <ul>
+
+    </ul>
+
+
+    <script>
+        var dongci = ['狼吞虎咽地解决了', '急头白脸地吃下了', '大口大口地吞下了', '津津有味地吃着', '笑着品尝了', '高高兴兴吃掉了'];
+        var num = ['1', '两', '5', '10', '200', '1', '3', '4', '27', '60', '4', '1', '1', '1', '73', '84', '1', '2', '3']
+        var food = ['个肉丸', '张烧饼', '碗炸酱面', '盆炖肉汤', '串腰子', '凤尾鱼翅', '个波兰水饺', '个火龙果派', '只烧鸡', '条水煮黑背鲈', '根玉米火腿肠', '个鲍鱼', '碗螺蛳粉', '只脆皮炸鸡', '个汉堡'];
+        var feel = ['感觉好撑', '心满意足', '终于吃饱了', '好不快哉', '感觉太棒了'];
+        var getDiv = document.querySelector('div');
+        var getUl = document.querySelector('ul');
+        var baodi = 0;
+        getDiv.onclick = function () {
+            var getLi = document.createElement('li');
+            if (getRandom(1, 10) <= 2) { getLi.innerHTML = '喝西北风去吧'; }
+            else {
+                getLi.innerHTML = '你' + dongci[getRandom(0, dongci.length - 1)] + num[getRandom(0, num.length - 1)]
+                    + sFood() + ',' + feel[getRandom(0, feel.length - 1)];
+            }
+
+            getUl.insertBefore(getLi, getUl.children[0]);
+        }
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function sFood() {
+            var r = getRandom(0, food.length - 1);
+            if (r == 5 || baodi == 9) {
+                baodi = 0;
+                return '道' + '<a style="color: rgb(240, 224, 84);">' + food[5] + '</a>';
+            }
+            else {
+                baodi++;
+                return food[r];
+            }
+        }
+    </script>
+
+</body>
+
+</html>
